@@ -62,6 +62,35 @@ app.get('/api/listrecipe', checklist, async (req, res) => {
     )
 })
 
+function check(req, res, next) {
+    const recipe = req.body
+    const regex = /\d/
+    if (!recipe) {
+        return res.end("Please fill the details")
+    }
+    if (!recipe.name || !recipe.description || !recipe.time || !recipe.cuisine) {
+        return res.status(400).end("Please fill the remaining details")
+    }
+    if (regex.test(recipe.cuisine)) {
+        return res.status(400).end("Cuisine should not contain numbers")
+    }
+    next()
+}
+
+app.post('/api/createrecipe', check, (req, res) => {
+    const data = req.body
+    const recipe = Recipe.create(
+        {
+            name: data.name,
+            description: data.description,
+            cuisine: data.cuisine,
+            time: data.time
+        }
+    )
+
+    res.status(201).end("Succesfully added")
+})
+
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
