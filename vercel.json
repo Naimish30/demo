@@ -4,9 +4,6 @@
       { "src": "index.js", "use": "@vercel/node" }
     ],
     "routes": [
-        { "src": "/api/createrecipe", "dest": "createrecipe.js" },
-        { "src": "/api/listrecipe", "dest": "listrecipe.js" },
-        { "src": "/api/updaterecipe/:id", "dest": "updaterecipe.js" },
-        { "src": "/api/deleterecipe/:id", "dest": "deleterecipe.js" }
-      ]
+      { "src": "/(.*)", "dest": "/index.js" }
+    ]
   }
