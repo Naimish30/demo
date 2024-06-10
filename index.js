@@ -9,7 +9,7 @@ const mongoose = require("mongoose")
 app.use(express.json())
 //Connection for mongodb
 
-mongoose.connect("mongodb+srv://Nrgajjar30:Naimish%403009@cluster0.di9i8s8.mongodb.net/")
+mongoose.connect("connection string")
     .then((response) => { console.log("Database Connectoed") })
     .catch((err) => console.log("Data Base Error:", err));
 
